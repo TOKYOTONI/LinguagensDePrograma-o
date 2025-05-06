@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC2</title>
+</head>
+<style>
+    body{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        background: linear-gradient(to right, #a2ded0, #6aafe6);
+    }
+    .container{
+        height: 100%;
+        width: 400px;
+        background-color: rgb(51, 56, 61);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        box-shadow: 0PX 22PX 100PX;
+        border-radius: 8PX;
+        border: 2PX white SOLID;
+    }
+    #nameInput{
+        align-self: center;
+        
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .gr{
+       display: flex;
+       gap: 10px;
+    }
+    button{
+        width: 100px;
+        border-radius: 2px;
+        align-self: flex-end;
+        background-color: greenyellow;
+    }
+    button:hover{
+        background-color: green;
+    }
+    input{
+        border-radius: 2px;
+    }
+</style>
+<body>
+    <div class="container">
+      <form onsubmit="enviar(event)">
+        <input type="text" name="nameInput" id="nameInput" placeholder="Nome" required> 
+        
+        <div class="gr">
+          <input type="text" name="telInput" id="telInput" placeholder="Telefone">
+          <input type="text" name="emailInput" id="emailInput" placeholder="Email" required>
+        </div>
+        
+        <input type="date" name="dataReserva" id="dataInput" required>
+        
+        <div class="gr">
+          <select name="Carro" id="CarroInput"></select>
+          <input type="text" name="modelInput" id="modelInput" placeholder="Modelo">
+        </div>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </body>
+  
+<script>
+    let carros = [
+  {
+    id: 1,
+    carro: "HB20",
+    modelo: "Hyundai HB20 1.0 Sense",
+    preco: 150,
+    dataReserva: "2025-05-01"
+  },
+  {
+    id: 2,
+    carro: "Onix",
+    modelo: "Chevrolet Onix LT 1.0",
+    preco: 160,
+    dataReserva: "2025-05-02"
+  },
+  {
+    id: 3,
+    carro: "Corolla",
+    modelo: "Toyota Corolla XEi 2.0",
+    preco: 230,
+    dataReserva: "2025-05-03"
+  },
+  {
+    id: 4,
+    carro: "Argo",
+    modelo: "Fiat Argo Drive 1.0",
+    preco: 145,
+    dataReserva: "2025-05-04"
+  },
+  {
+    id: 5,
+    carro: "Kwid",
+    modelo: "Renault Kwid Zen 1.0",
+    preco: 130,
+    dataReserva: "2025-05-05"
+  },
+  {
+    id: 6,
+    carro: "Polo",
+    modelo: "Volkswagen Polo TSI 1.0",
+    preco: 175,
+    dataReserva: "2025-05-06"
+  },
+  {
+    id: 7,
+    carro: "HR-V",
+    modelo: "Honda HR-V EX 1.8",
+    preco: 250,
+    dataReserva: "2025-05-07"
+  },
+  {
+    id: 8,
+    carro: "Compass",
+    modelo: "Jeep Compass Longitude 1.3 Turbo",
+    preco: 300,
+    dataReserva: "2025-05-08"
+  },
+  {
+    id: 9,
+    carro: "Tracker",
+    modelo: "Chevrolet Tracker LT 1.2 Turbo",
+    preco: 280,
+    dataReserva: "2025-05-09"
+  },
+  {
+    id: 10,
+    carro: "Civic",
+    modelo: "Honda Civic Touring 1.5 Turbo",
+    preco: 270,
+    dataReserva: "2025-05-10"
+  }
+];
+    let Nome
+    let telefone
+    let Email
+    let dataReserva 
+    
+    const dataInput = document.getElementById('dataInput');
+    const SelectCarros = document.getElementById('CarroInput');
+
+    const car = document.getElementById('CarroInput')
+
+    // carr.addEventListener('change', () =>{
+
+
+
+    // })
+
+dataInput.addEventListener('change', () => {
+  const dataSelecionada = dataInput.value;
+
+  let carrosDisponiveis = carros.filter(carro => carro.dataReserva !== dataSelecionada);
+
+  SelectCarros.innerHTML = '';
+
+  carrosDisponiveis.forEach(carro => {
+    let option = document.createElement('option');
+    option.value = carros.carro;
+    option.textContent = carros.carro;
+    SelectCarros.appendChild(option);
+  });
+});
+
+
+// carrosDisponiveis.addEventListener()
+
+
+
+
+function enviar(event) {
+  event.preventDefault();
+  const Nome = document.getElementById('nameInput').value;
+  const telefone = document.getElementById('telInput').value;
+  const Email = document.getElementById('emailInput').value;
+  const dataReserva = document.getElementById('dataInput').value;
+
+  let cliente = {
+    nome: Nome,
+    telefone,
+    email: Email,
+    dataReserva
+  };
+
+  console.log(cliente);
+  window.alert('Cliente cadastrado com sucesso!');
+}
+
+</script>
+</html>
